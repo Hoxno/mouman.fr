@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title') | {{ config('app.name') }}</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased to-blue-950 text-base md:pb-32 h-full">
         {{-- Header --}}
-        <header class="flex w-full fixed top-0 left-0 bg-[#fff] z-50 shadow">
+        <header class="flex w-full fixed top-0 left-0 bg-[#fff] z-50 shadow-[#92a1b026]">
             
             {{-- Navigation --}}
-            <nav class="flex h-16 max-w-5xl mx-auto gap-2 w-full justify-between items-center">
+            <nav class="flex h-16 max-w-5xl gap-2 w-full justify-between items-center bd-grid">
                 {{-- Logo --}}
-            <a class="" href="{{ route('index') }}">
+            <a class="text-primary" href="{{ route('index') }}">
                 Mohamed MOUMAN
             </a>
 
@@ -37,7 +37,7 @@
                     x-transition:leave="transition ease-in duration-75"
                     x-transition:leave-start="transform opacity-100 scale-100"
                     x-transition:leave-end="transform opacity-0 scale-95"
-                    class="md:hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    class="md:hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#fff] py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     tabindex="-1"
                 >
                     <li><a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mon CV</a></li>
@@ -60,7 +60,7 @@
             
         </header>
         <main class="mt-10 md:mt-12 lg:mt-16">
-            @yield('content')
+            {{ $slot }}
         </main>
     
 </body>
