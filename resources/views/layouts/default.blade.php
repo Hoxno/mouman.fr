@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased text-primary bg-body text-base md:pb-32 h-full md:pb-0">
+<body class="antialiased text-primary bg-body text-base h-full md:m-0">
         {{-- Header --}}
         <header class="flex w-full fixed top-0 left-0 bg-[#fff] z-50 shadow-3xl">
             

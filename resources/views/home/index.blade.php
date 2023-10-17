@@ -1,4 +1,6 @@
 <x-layout title="Accueil">
     @include('home.about')
-    @include('home.skill')
+    @if(count($skills) > 0)
+        @include('home.skill')
+    @endif
 </x-layout>
