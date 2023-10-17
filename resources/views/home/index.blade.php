@@ -6,4 +6,7 @@
     @if (count($works) > 0)
         @include('home.work')
     @endif
+    @if (count($schools) > 0)
+        @include('home.school')
+    @endif
 </x-layout>
