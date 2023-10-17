@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class="m-0 w-full">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased to-blue-950 text-base md:pb-32 h-full">
+<body class="antialiased text-primary bg-body text-base md:pb-32 h-full md:pb-0">
         {{-- Header --}}
-        <header class="flex w-full fixed top-0 left-0 bg-[#fff] z-50 shadow-[#92a1b026]">
+        <header class="flex w-full fixed top-0 left-0 bg-[#fff] z-50 shadow-3xl">
             
             {{-- Navigation --}}
             <nav class="flex h-16 max-w-5xl gap-2 w-full justify-between items-center bd-grid">
@@ -62,6 +63,11 @@
         <main class="mt-10 md:mt-12 lg:mt-16">
             {{ $slot }}
         </main>
-    
+    <!--=======FOOTER=======-->
+    <footer class="footer flex justify-end z-50 bg-footer text-[#f2f2f2] text-center overflow-hidden py-16 text-sm border">
+        <div class="bd-grid">
+            <p class="text-center uppercase text-xs tracking-wider">&copy; <a href="mouman.fr" class="no-underline text-[#8C8C8C]">mouman.fr</a> | tous droits réservés </p>
+        </div>
+    </footer>
 </body>
 </html>

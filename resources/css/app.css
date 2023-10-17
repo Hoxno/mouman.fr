@@ -21,3 +21,15 @@
         margin-right: auto;
     }
 }
+
+.skills__icon__html {
+    color: #e34c26;
+}
+
+.skills__icon__css {
+    color: #0081D5;
+}
+
+.skills__icon__php {
+    color: #787cb5;
+}
