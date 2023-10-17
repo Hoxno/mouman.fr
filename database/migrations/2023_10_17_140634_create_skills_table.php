@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('level');
-            $table->longText('description');
-            $table->string('online');
+            $table->string('level')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('order');
+            $table->string('online')->default('1')->nullable();
             $table->timestamps();
         });
     }

@@ -22,9 +22,9 @@ module.exports = {
       primary: "#004366",
       secondary: "#0081D5",
       footer: "#212121",
-      html5: "#e34c26",
-      css3: "#0081D5",
-      php: "#787cb5",
+      HTML5: "#e34c26",
+      CSS3: "#0081D5",
+      PHP: "#787cb5",
       javascript: "#eace2c",
     }
   },

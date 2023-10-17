@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index ()
     {
-        $skills = Skill::all();
+        $skills = Skill::orderBy('order', 'asc')->get();
         return view('home.index', compact('skills'));
     }
 }

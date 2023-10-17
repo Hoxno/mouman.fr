@@ -22,14 +22,26 @@
     }
 }
 
-.skills__icon__html {
+.skills__icon__HTML5 {
     color: #e34c26;
 }
 
-.skills__icon__css {
+.skills__icon__CSS3 {
     color: #0081D5;
 }
 
-.skills__icon__php {
+.skills__icon__PHP {
     color: #787cb5;
+}
+
+.skill__HTML5 {
+    background-color: #e34c26;
+}
+
+.skill__CSS3 {
+    background-color: #0081D5;
+}
+
+.skill__PHP {
+    background-color: #787cb5;
 }
