@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\School;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FormSchoolRequest;
 
 class SchoolController extends Controller
 {
@@ -12,7 +14,9 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.school.index', [
+            'schools' => School::all()
+        ]);
     }
 
     /**
@@ -20,39 +24,36 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.school.form', [
+            'school' => new School()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FormSchoolRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $school = School::create($request->validated());
+        return to_route('dashboard.school.index')->with('success', 'La formation ajoutée avec succès !');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $education = School::findOrFail($id);
+        return view('dashboard.school.form', compact('school'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FormSchoolRequest $request, School $school)
     {
-        //
+        $school->update($request->validated());
+        return to_route('dashboard.school.index')->with('success', 'La formation mise à jour avec succès !');
     }
 
     /**
@@ -60,6 +61,8 @@ class SchoolController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $school = School::findOrFail($id);
+        $school->delete();
+        return redirect()->route('dashboard.school.index')->with('success', 'La formation supprimée avec succès !');
     }
 }
