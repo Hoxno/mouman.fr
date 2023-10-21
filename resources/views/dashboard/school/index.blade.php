@@ -6,11 +6,11 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 bg-[#fff] shadow-xl  ">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 bg-white shadow-xl  ">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 ">
                     {{ __("") }}
-                    <a href="{{ route('dashboard.work.create') }}" class="float-right py-2.5 px-7 border-[2px] cursor-pointer mb-6 hover:bg-[#111827] hover:text-[#fff]">Ajouter</a>
+                    <a href="{{ route('dashboard.work.create') }}" class="float-right py-2.5 px-7 border-[2px] cursor-pointer mb-6 hover:bg-[#111827] hover:text-white">Ajouter</a>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
