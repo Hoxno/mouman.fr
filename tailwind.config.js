@@ -21,12 +21,13 @@ export default {
         },
         clipPath: {
           mypolygon: "polygon(0 0, 100% 0%, 100% 100%, 0 90%)",
-      },
+        },
       },
       colors: {
         body: "#f5f5f5",
         primary: "#004366",
         secondary: "#0081D5",
+        invalid: "#DB464B",
         footer: "#212121",
         HTML5: "#e34c26",
         CSS3: "#0081D5",

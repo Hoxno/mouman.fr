@@ -13,6 +13,7 @@ class Skill extends Model
         'title',
         'level',
         'description',
+        'order',
         'online',
     ];
 }

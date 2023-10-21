@@ -13,7 +13,7 @@ class Layout extends Component
      */
     public function __construct(public string $title= '')
     {
-        $this->title = config('app.name') . ($title ? "| $title" : " ");
+        $this->title = config('app.name') . ($title ? " | $title" : " ");
     }
 
     /**
