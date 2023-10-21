@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\SchoolController;
+use App\Http\Controllers\Admin\WorkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +26,8 @@ Route::get('/dashboard', function () {
 
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group( function () {
     Route::resource('skill', SkillController::class)->except('show');
+    Route::resource('work', WorkController::class)->except('show');
+    Route::resource('school', SchoolController::class)->except('show');
 });
 
 Route::middleware('auth')->group(function () {

@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('dashboard.skill.index')" :active="request()->routeIs('dashboard.skill.index')">
                         {{ __('Compétance') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('dashboard.work.index')" :active="request()->routeIs('dashboard.work.index')">
+                        {{ __('Expérience') }}
+                    </x-nav-link>
                 </div>
             </div>
 
