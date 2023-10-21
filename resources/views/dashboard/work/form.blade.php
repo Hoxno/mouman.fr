@@ -25,8 +25,8 @@
                                     <x-input class="col" name="title" label="Titre" :value="$work->title"></x-input>
                                     <div class="w-1/2">
                                         <x-input class="col" name="company" label="Enreprise" :value="$work->company"></x-input>
-                                        <x-input class="col" name="start_date" label="Date de début" :value="$work->start_date"></x-input>
-                                        <x-input class="col" name="end_date" label="Date de fin" :value="$work->end_date"></x-input>
+                                        <x-input type="date" class="col" name="start_date" label="Date de début" :value="$work->start_date"></x-input>
+                                        <x-input type="date" class="col" name="end_date" label="Date de fin" :value="$work->end_date"></x-input>
                                     </div>
                                 </div>
                                 <x-input type="textarea" label="Description" name="description" :value="$work->description"></x-input>

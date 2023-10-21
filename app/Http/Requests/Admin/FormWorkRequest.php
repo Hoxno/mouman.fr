@@ -11,7 +11,7 @@ class FormWorkRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class FormWorkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'min:3'],
+            'company' => ['required', 'min:3'],
+            'city' => ['required', 'min:3'],
+            'start_date' => ['required'],
+            'end_date' => ['min:0'],
+            'description' => ['required', 'min:3'],
         ];
     }
 }

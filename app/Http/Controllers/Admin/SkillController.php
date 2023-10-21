@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Skill;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormSkillRequest;
 
@@ -36,14 +35,6 @@ class SkillController extends Controller
     {
         $skill = Skill::create($request->validated());
         return to_route('dashboard.skill.index')->with('success', 'Compétence ajoutée avec succès !');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
