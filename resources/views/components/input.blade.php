@@ -12,7 +12,7 @@
             >
         @endif
         @error($name)
-        <div class="invalid-feedback">
+        <div class="flex items-center p-2 mt-2 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:border-red-800">
             {{ $message }}
         </div>
         @enderror

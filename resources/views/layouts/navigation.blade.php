@@ -15,15 +15,37 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard.skill.index')" :active="request()->routeIs('dashboard.skill.index')">
-                        {{ __('Compétance') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('dashboard.work.index')" :active="request()->routeIs('dashboard.work.index')">
-                        {{ __('Expérience') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('dashboard.school.index')" :active="request()->routeIs('dashboard.school.index')">
-                        {{ __('Formation') }}
-                    </x-nav-link>
+                    <div class="sm:flex sm:items-center">
+                        <x-dropdown align="top">
+                            <x-slot name="trigger">
+                                <div class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-[#6B7280] bg-white hover:text-[#374151] focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('Mon CV') }}</div>
+    
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('dashboard.skill.index')">
+                                {{ __('Mes compétances') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('dashboard.work.index')">
+                                {{ __('Mes expérience') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('dashboard.school.index')">
+                                {{ __('Mes formations') }}
+                            </x-dropdown-link>
+    
+                        </x-slot>
+                        
+                    </x-dropdown>
+                </div>
+                    
+
+
                 </div>
             </div>
 
