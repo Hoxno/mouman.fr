@@ -28,6 +28,7 @@ class FormWorkRequest extends FormRequest
             'start_date' => ['required'],
             'end_date' => ['min:0'],
             'description' => ['required', 'min:3'],
+            'online' => ['min:0'],
         ];
     }
 }

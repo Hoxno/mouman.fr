@@ -24,9 +24,10 @@
                                 <div class="mt-10 space-y-8 md:w-2/3 w-full">
                                     <x-input class="col" name="title" label="Titre" :value="$school->title"></x-input>
                                     <div class="w-1/2">
-                                        <x-input class="col" name="school" label="Ecole" :value="$school->school"></x-input>
-                                        <x-input class="col" name="start_date" label="Date de début" :value="$school->start_date"></x-input>
-                                        <x-input class="col" name="end_date" label="Date de fin" :value="$school->end_date"></x-input>
+                                        <x-input name="school" label="Ecole" :value="$school->school"></x-input>
+                                        <x-input name="city" label="Ville" :value="$school->city"></x-input>
+                                        <x-input type="date" name="start_date" label="Date de début" :value="$school->start_date"></x-input>
+                                        <x-input type="date" name="end_date" label="Date de fin" :value="$school->end_date"></x-input>
                                     </div>
                                 </div>
                                 <x-input type="textarea" label="Description" name="description" :value="$school->description"></x-input>
@@ -42,7 +43,9 @@
                                 @endif
                             </button>
                         </div>
-            </div>
+                    </form>
+                </div>
         </div>
     </div>
 </x-app-layout>
+

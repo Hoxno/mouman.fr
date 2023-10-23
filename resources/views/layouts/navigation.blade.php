@@ -38,12 +38,9 @@
                             <x-dropdown-link :href="route('dashboard.school.index')">
                                 {{ __('Mes formations') }}
                             </x-dropdown-link>
-    
                         </x-slot>
-                        
                     </x-dropdown>
                 </div>
-                    
 
 
                 </div>

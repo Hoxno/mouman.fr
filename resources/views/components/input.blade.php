@@ -4,7 +4,7 @@
         @if ($type === 'textarea')
         <textarea class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full @error($name) is-invalid @enderror" type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" cols="30" rows="10">{{ old($name, $value) }}</textarea>
         @else
-        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full @error($name) is-invalid @enderror" 
+        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full px-3 py-2 outline-none @error($name) is-invalid @enderror" 
             type="{{ $type }}" 
             id="{{ $name }}" 
             name="{{ $name }}" 

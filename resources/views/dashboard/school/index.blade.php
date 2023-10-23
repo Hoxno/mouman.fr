@@ -1,7 +1,7 @@
 <x-app-layout title="Mes compétances">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-16">
-            {{ __('Dashboard > Mon CV > Mes formation') }}
+            {{ __('Dashboard > Mon CV > Mes formations') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 ">
                     {{ __("") }}
-                    <a href="{{ route('dashboard.work.create') }}" class="float-right py-2.5 px-7 border-[2px] cursor-pointer mb-6 hover:bg-[#111827] hover:text-white">Ajouter</a>
+                    <a href="{{ route('dashboard.school.create') }}" class="float-right py-2.5 px-7 border-[2px] cursor-pointer mb-6 hover:bg-[#111827] hover:text-white">Ajouter</a>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
