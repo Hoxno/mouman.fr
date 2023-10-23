@@ -1,6 +1,6 @@
 <!--====== SKILLS ======-->
 <section class="py-8 md:pt-32 md:pb-12" id="skills">
-    <h2 class="relative text-secondary mt-4 mb-8 text-center after:content-[''] after:absolute after:w-16 after:h-1 after:bg-secondary after:top-12 after:right-0 after:left-0 after:m-auto md:mb-12 md:after:w-20 md:after:top-12">
+    <h2 class="relative text-lg text-secondary mt-4 mb-8 text-center after:content-[''] after:absolute after:w-16 after:h-1 after:bg-secondary after:top-12 after:right-0 after:left-0 after:m-auto md:mb-12 md:after:w-20 md:after:top-12">
         Mes compétances
     </h2>
     <div class="gap-y-8 bd-grid md:gap-x-8">

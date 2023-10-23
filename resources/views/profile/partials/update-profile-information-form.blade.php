@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Mise à jour des informations de profil et de l'adresse mail de votre compte.") }}
+            {{ __("Mise à jour des informations du profil.") }}
         </p>
     </header>
 
@@ -18,9 +18,37 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="firstname" :value="__('Prénom')" />
+            <x-text-input id="firstname" name="firstname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->firstname)" required autofocus autocomplete="firstname" />
+            <x-input-error class="mt-2" :messages="$errors->get('firstname')" />
+        </div>
+
+        <div>
+            <x-input-label for="lastname" :value="__('Nom')" />
+            <x-text-input id="lastname" name="lastname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->lastname)" required autofocus autocomplete="lastname" />
+            <x-input-error class="mt-2" :messages="$errors->get('lastname')" />
+        </div>
+        <div>
+            <x-input-label for="jobtitle" :value="__('Métier')" />
+            <x-text-input id="jobtitle" name="jobtitle" type="text" class="mt-1 block w-full" :value="old('jobtitle', $user->jobtitle)" required autofocus autocomplete="jobtitle" />
+            <x-input-error class="mt-2" :messages="$errors->get('jobtitle')" />
+        </div>
+
+        <div>
+            <x-input id="about" name="A propos" type="textarea" class="mt-1 block w-full" :value="old('about', $user->about)" required autofocus autocomplete="about" />
+            <x-input-error class="mt-2" :messages="$errors->get('about')" />
+        </div>
+
+        <div>
+            <x-input-label for="image" :value="__('Image de profile')" />
+            <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" :value="old('image', $user->image)" required autofocus autocomplete="image" />
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
+        </div>
+
+        <div>
+            <x-input-label for="doc" :value="__('Upload du CV')" />
+            <x-text-input id="doc" name="doc" type="file" class="mt-1 block w-full" :value="old('doc', $user->doc)" required autofocus autocomplete="doc" />
+            <x-input-error class="mt-2" :messages="$errors->get('doc')" />
         </div>
 
         <div>
@@ -48,7 +76,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Sauvegarder') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
@@ -57,7 +85,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Sauvegarder.') }}</p>
             @endif
         </div>
     </form>
