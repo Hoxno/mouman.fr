@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -16,10 +15,15 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Display the registration view if no user exists.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        if (User::count() > 0) {
+            // S'il y a déjà un utilisateur enregistré, redirigez-le vers une autre vue (par exemple, la page d'accueil).
+            return redirect(RouteServiceProvider::HOME);
+        }
+
         return view('auth.register');
     }
 
@@ -30,6 +34,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Vérifiez à nouveau s'il y a déjà un utilisateur enregistré.
+        if (User::count() > 0) {
+            // S'il y a déjà un utilisateur enregistré, redirigez-le vers une autre vue (par exemple, la page d'accueil).
+            return redirect(RouteServiceProvider::HOME);
+        }
+
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
