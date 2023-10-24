@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class Input extends Component
 {
@@ -34,6 +35,14 @@ class Input extends Component
         $this->value = $value;
         $this->label = $label ?: ucfirst($name);
     }
+    public function isImage(): bool
+    {
+        return str_starts_with(Storage::mimeType($this->value), 'image/');
+    }
+    public function isPdf(): bool
+{
+    return str_starts_with(Storage::mimeType($this->value), 'application/pdf');
+}
 
 
     /**

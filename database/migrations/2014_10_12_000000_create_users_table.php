@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('about')->nullable();
             $table->string('jobtitle')->nullable();
             $table->string('image')->nullable();
-            $table->string('doc')->nullable();
+            $table->string('pdf_file')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

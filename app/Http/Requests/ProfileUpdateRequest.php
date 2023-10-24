@@ -21,8 +21,8 @@ class ProfileUpdateRequest extends FormRequest
             'lastname' => ['string','max:10'],
             'jobtitle'=> ['string','min:3'],
             'about'=> ['min:3'],
-            'image'=> ['string','min:3'],
-            'doc'=> ['string','min:3'],
+            'image' => ['image', 'mimes:jpeg,jpg,svg', 'max:2048'],
+            'pdf_file' => ['file','mimes:pdf', 'max:2048'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
         ];
     }
