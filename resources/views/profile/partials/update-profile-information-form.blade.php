@@ -17,61 +17,54 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="firstname" :value="__('Prénom')" />
-            <x-text-input id="firstname" name="firstname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->firstname)" required autofocus autocomplete="firstname" />
-            <x-input-error class="mt-2" :messages="$errors->get('firstname')" />
+        <div class="flex space-x-4">
+            <div class="w-1/2">
+                <x-input :name="'firstname'" :label="'Prénom'" :type="'text'" :value="old('firstname', $user->firstname)" :required="true" :autofocus="true" :autocomplete="'firstname'" :errors="$errors->get('firstname')" />
+            </div>
+            <div class="w-1/2">
+                <x-input :name="'lastname'" :label="'Nom'" :type="'text'" :value="old('lastname', $user->lastname)" :required="true" :autofocus="true" :autocomplete="'lastname'" :errors="$errors->get('lastname')" />
+            </div>
         </div>
+        <x-input :name="'jobtitle'" :label="'Métier'" :type="'text'" :value="old('jobtitle', $user->jobtitle)" :required="true" :autofocus="true" :autocomplete="'jobtitle'" :errors="$errors->get('jobtitle')" />
+
+        <x-input :name="'about'" :label="'A propos'" :type="'textarea'" :value="$user->about" :errors="$errors->get('about')" />
+
+        <!-- Afficher l'aperçu de l'image actuelle -->
+        @if ($user->image)
+            <div class="mt-3">
+                <p>Photo actuelle :</p>
+                <img class="mt-2 max-w-full max-h-48" src="{{ asset('storage/' . $user->image) }}" alt="Image actuelle">
+            </div>
+        @endif
+
+        <x-input :name="'image'" :label="'Photo de profile'" :type="'file'" :value="$user->image" :errors="$errors->get('image')" />
 
         <div>
-            <x-input-label for="lastname" :value="__('Nom')" />
-            <x-text-input id="lastname" name="lastname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->lastname)" required autofocus autocomplete="lastname" />
-            <x-input-error class="mt-2" :messages="$errors->get('lastname')" />
-        </div>
-        <div>
-            <x-input-label for="jobtitle" :value="__('Métier')" />
-            <x-text-input id="jobtitle" name="jobtitle" type="text" class="mt-1 block w-full" :value="old('jobtitle', $user->jobtitle)" required autofocus autocomplete="jobtitle" />
-            <x-input-error class="mt-2" :messages="$errors->get('jobtitle')" />
-        </div>
-
-        <div>
-            <x-input id="about" name="A propos" type="textarea" class="mt-1 block w-full" :value="old('about', $user->about)" required autofocus autocomplete="about" />
-            <x-input-error class="mt-2" :messages="$errors->get('about')" />
-        </div>
-
-        <div>
-            <x-input id="image" name="image" type="file" label="Photo de profile" class="mt-1 block w-full" :value="old('image', $user->image)" required autofocus autocomplete="image" />
-            <x-input-error class="mt-2" :messages="$errors->get('image')" />
-        </div>
-
-        <div>
-            <x-input name="pdf_file" label="Upload du CV" class="mt-1 block w-full" type="file" :value="old('pdf_file', $user->pdf_file)" required autofocus autocomplete="pdf_file" />
-            <x-input-error class="mt-2" :messages="$errors->get('pdf_file')" />
-        </div>
-
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
+            <x-input :name="'pdf_file'" :label="'Upload du CV'" :type="'file'" :value="old('pdf_file', $user->pdf_file)" :required="true" :autofocus="true" :autocomplete="'pdf_file'" :errors="$errors->get('pdf_file')" />
+            @if ($user->pdf_file)
+                <p>Fichier PDF actuel : <a href="{{ asset('storage/' . $user->pdf_file) }}" download class="inline-block bg-gray-800 text-[#fff] px-4 py-2 rounded-lg border-0 mt-4">Télécharger le PDF actuel</a></p>
             @endif
         </div>
+
+        <x-input :name="'email'" :label="'Email'" :type="'email'" :value="old('email', $user->email)" :required="true" :autocomplete="'username'" :errors="$errors->get('email')" />
+
+        @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            <div>
+                <p class="text-sm mt-2 text-gray-800">
+                    {{ __('Your email address is unverified.') }}
+    
+                    <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{ __('Click here to re-send the verification email.') }}
+                    </button>
+                </p>
+
+                @if (session('status') === 'verification-link-sent')
+                    <p class="mt-2 font-medium text-sm text-green-600">
+                        {{ __('A new verification link has been sent to your email address.') }}
+                    </p>
+                @endif
+            </div>
+        @endif
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Sauvegarder') }}</x-primary-button>
