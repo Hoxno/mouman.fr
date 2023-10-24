@@ -31,12 +31,13 @@
 
         <!-- Afficher l'aperçu de l'image actuelle -->
         @if ($user->image)
-            <div class="mt-3">
-                <p>Photo actuelle :</p>
-                <img class="mt-2 max-w-full max-h-48" src="{{ asset('storage/' . $user->image) }}" alt="Image actuelle">
+            <div class="mt-6">
+                <p class="text-lg font-semibold text-gray-700">Photo actuelle :</p>
+                <div class="mt-3 flex items-center">
+                    <img class="w-24 h-24 rounded-full object-cover" src="{{ asset('storage/' . $user->image) }}" alt="Image actuelle">
+                </div>
             </div>
         @endif
-
         <x-input :name="'image'" :label="'Photo de profile'" :type="'file'" :value="$user->image" :errors="$errors->get('image')" />
 
         <div>
