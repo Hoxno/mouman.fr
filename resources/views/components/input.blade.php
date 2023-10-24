@@ -2,7 +2,7 @@
     <label for="{{ $name }}" class="block text-sm font-medium text-gray-700">{{ $label }}</label>
     <div class="mt-2 relative rounded-md shadow-sm @error($name) border border-red-300 @enderror">
         @if ($type === 'textarea')
-            <textarea class="w-full px-3 py-2 border {{ $errors->has($name) ? 'border-red-300' : 'border-gray-300' }} focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" cols="5" rows="5">{{ old($name, $value) }}</textarea>
+            <textarea class="w-full px-3 py-2 border {{ $errors->has($name) ? 'border-red-300' : 'border-gray-300' }} focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" cols="5" rows="8">{{ old($name, $value) }}</textarea>
         @else
             <input class="w-full px-3 py-2 border {{ $errors->has($name) ? 'border-red-300' : 'border-gray-300' }} focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" 
             type="{{ $type }}" 
