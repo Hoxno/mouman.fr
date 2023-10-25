@@ -45,3 +45,39 @@
 .skill__PHP {
     background-color: #787cb5;
 }
+
+/* Styles pour l'élément d'entrée (input et textarea) */
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb; /* Couleur de la bordure par défaut */
+    border-radius: 0.375rem; /* Rayon des bords arrondis */
+    transition: border-color 0.3s ease;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.input-field:focus {
+    border-color: #2563eb; /* Couleur de la bordure lorsqu'il est en focus */
+    outline: 0;
+}
+
+/* Styles pour les informations sur le fichier */
+.file-info {
+    margin-top: 0.75rem; /* Espace au-dessus de l'info de fichier */
+}
+
+/* Styles pour l'aperçu d'image (le cas échéant) */
+.file-preview {
+    margin-top: 0.75rem; /* Espace au-dessus de l'aperçu de l'image */
+    max-width: 100%; /* Largeur maximale de l'image prévisualisée */
+    max-height: 12rem; /* Hauteur maximale de l'image prévisualisée */
+}
+
+/* Styles pour les messages d'erreur */
+.error-message {
+    margin-top: 0.75rem; /* Espace au-dessus du message d'erreur */
+    border-color: #dc2626; /* Couleur de la bordure en cas d'erreur */
+    background-color: #fed7d7; /* Couleur d'arrière-plan en cas d'erreur */
+    color: #e31c3d; /* Couleur du texte en cas d'erreur */
+}
