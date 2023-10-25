@@ -1,5 +1,5 @@
 <section class="py-4 md:pt-16 md:pb-8" id="contact">
-    <h2 class="relative text-lg text-secondary mt-4 mb-4 text-center after:content-[''] after:absolute after:w-12 after:h-1 after:bg-secondary after:top-10 after:right-0 after:left-0 after:m-auto md:mb-8 md:after:w-16 md:after:top-10">
+    <h2 class="relative text-lg text-secondary mt-4 mb-8 text-center after:content-[''] after:absolute after:w-16 after:h-1 after:bg-secondary after:top-12 after:right-0 after:left-0 after:m-auto md:mb-12 md:after:w-20 md:after:top-12">
         Me contacter
     </h2>
     <form action="{{ route('contact') }}" method="POST" class="mx-auto my-auto max-w-5xl">

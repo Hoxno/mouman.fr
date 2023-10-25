@@ -74,8 +74,8 @@
         </main>
     <!--=======FOOTER=======-->
     <footer class="footer flex justify-end z-50 bg-footer text-[#f2f2f2] text-center overflow-hidden py-16 text-sm border">
-        <div class="bd-grid">
-            <p class="text-center uppercase text-xs tracking-wider">&copy; <a href="mouman.fr" class="no-underline text-[#8C8C8C]">mouman.fr</a> | tous droits réservés </p>
+        <div class="mx-auto my-auto max-w-5xl">
+            <p class="text-center uppercase text-xs tracking-wider">© {{ date('Y') }} <a href="mouman.fr" class="no-underline text-[#8C8C8C]">mouman.fr</a> | tous droits réservés | Version 2.0</p>
         </div>
     </footer>
 </body>
