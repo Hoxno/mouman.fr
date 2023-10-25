@@ -15,6 +15,9 @@ export default {
         fontFamily: {
           sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         },
+        width: {
+          '80': '80%',
+        },
         boxShadow: {
           '4xl': '0 4px 25px rgba(0, 36, 49, 0.15)',
           '3xl': '0 1px 4px rgba(146,161,176,0.15)',
