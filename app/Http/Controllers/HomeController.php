@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Work;
 use App\Models\Skill;
 use App\Models\School;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {

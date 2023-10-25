@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\SchoolController;
-use App\Http\Controllers\Admin\WorkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\WorkController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\SchoolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
 require __DIR__.'/auth.php';

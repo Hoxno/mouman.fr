@@ -70,6 +70,7 @@
             
         </header>
         <main class="mt-10 md:mt-12 lg:mt-16">
+            <x-flash></x-flash>
             {{ $slot }}
         </main>
     <!--=======FOOTER=======-->

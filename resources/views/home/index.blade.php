@@ -9,4 +9,5 @@
     @if (count($schools) > 0)
         @include('home.school')
     @endif
+    @include('home.contact')
 </x-layout>
