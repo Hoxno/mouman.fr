@@ -70,6 +70,14 @@
     line-height: 1.5;
 }
 
+.dark .input-field {
+    /* Vos styles pour le mode sombre */
+    /* Par exemple : */
+    background-color: #333333;
+    color: #fff;
+    border: 1px solid #666;
+}
+
 .input-field:focus {
     border-color: #2563eb; /* Couleur de la bordure lorsqu'il est en focus */
     outline: 0;

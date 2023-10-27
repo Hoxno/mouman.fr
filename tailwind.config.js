@@ -9,6 +9,9 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
+    darkMode: [
+      'class',
+    ],
 
     theme: {
       extend: {
@@ -31,6 +34,10 @@ export default {
         primary: "#004366",
         secondary: "#0081D5",
         "font-color": "#212121",
+        dark__body: "#1A202C",          // Couleur d'arrière-plan du mode sombre
+        dark__primary: "#00A5CF",       // Couleur principale en mode sombre
+        dark__secondary: "#4299E1",     // Couleur secondaire en mode sombre
+        "dark__font-color": "#ffffff",
         white: "#FFFFFF",
         black: "#000000",
         "red-50" : "rgb(254 242 242)",
