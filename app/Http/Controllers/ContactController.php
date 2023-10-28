@@ -11,20 +11,20 @@ use App\Http\Requests\ContactRequest;
 class ContactController extends Controller
 {
     public function contact(ContactRequest $request)
-    {
-        // Validez la requête
-        $validatedData = $request->validated();
+{
+    // Validez la requête
+    $validatedData = $request->validated();
 
-        // Créez une instance de ContactMail en passant les données validées
-        $emailData = [
-            'subject' => $validatedData['subject'],
-            'message' => $validatedData['message'],
-        ];
-        $contactMail = new ContactMail($emailData);
+    // Créez une instance de ContactMail en passant les données validées et l'adresse du destinataire
+    $emailData = [
+        'subject' => $validatedData['subject'],
+        'message' => $validatedData['message'],
+    ];
+    $contactMail = new ContactMail($emailData);
 
-        // Envoyez l'e-mail
-        Mail::to('admin@doe.fr')->send($contactMail);
+    // Envoyez l'e-mail en utilisant l'adresse e-mail du destinataire
+    Mail::to('contact@mouman.fr')->send($contactMail);
 
-        return back()->with('success', 'Votre message a bien été envoyé');
-    }
+    return back()->with('success', 'Votre message a bien été envoyé');
+}
 }

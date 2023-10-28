@@ -19,11 +19,10 @@ class ContactMail extends Mailable
     }
 
     public function build()
-{
-    return $this
-        ->from('votre@adresse-email.com', 'Votre Nom') // Adresse e-mail et nom de l'expéditeur
-        ->to('admin@doe.fr') // Adresse du destinataire
-        ->subject('Contact Mail') // Sujet de l'e-mail
-        ->markdown('emails.contact', ['data' => $this->data]); // Vue Markdown pour le contenu de l'e-mail
-}
+    {
+        return $this
+            ->from('contact@mouman.fr', 'Votre Nom')
+            ->subject('Contact Mail') // Sujet de l'e-mail
+            ->markdown('emails.contact', ['data' => $this->data]); // Vue Markdown pour le contenu de l'e-mail
+    }
 }
