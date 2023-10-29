@@ -11,18 +11,28 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * Undocumented variable
+     *
+     * @var array < string> $data
+     */
     public array $data;
 
+    /**
+     * Undocumented function
+     *
+     * @param array < string > $data
+     */
     public function __construct(array $data)
     {
         $this->data = $data;
     }
 
-    public function build()
+    public function build(): self
     {
         return $this
-            ->from('contact@mouman.fr', 'mouman.fr')
-            ->subject('Nouvelle demande de contact') // Sujet de l'e-mail
-            ->markdown('emails.contact', ['data' => $this->data]); // Vue Markdown pour le contenu de l'e-mail
+            ->from($this->data['email'], $this->data['firstname'] . ' ' . $this->data['lastname'])
+            ->subject('Nouvelle demande de contact')
+            ->markdown('emails.contact', ['data' => $this->data]);
     }
 }

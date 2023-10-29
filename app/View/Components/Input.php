@@ -2,17 +2,18 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\Component;
 
 class Input extends Component
 {
-    public $name;
-    public $label;
-    public $type;
-    public $value;
+    public string $name;
+    public string $label;
+    public string $type;
+    public ?string $value;
     
-    public function __construct($name, $label, $type, $value = null)
+    public function __construct(string $name, string $label, string $type, ?string $value = null)
     {
         $this->name = $name;
         $this->label = $label;
@@ -30,7 +31,7 @@ class Input extends Component
         return str_starts_with(Storage::mimeType($this->value), 'application/pdf');
     }
 
-    public function render()
+    public function render() :View
     {
         return view('components.input');
     }

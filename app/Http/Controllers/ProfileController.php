@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use \Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
-    private function isValidImage($image)
+    private function isValidImage(UploadedFile $image) :bool
     {
         $validExtensions = ['jpeg', 'jpg', 'png', 'gif'];
         $maxSize = 2048; // Taille maximale en kilo-octets (ici, 2 Mo).
@@ -22,7 +23,7 @@ class ProfileController extends Controller
            $image->getSize() <= $maxSize * 1024;
     }
 
-    private function isValidPdf($pdfFile)
+    private function isValidPdf(UploadedFile $pdfFile) :bool
     {
         $validExtensions = ['pdf'];
         $maxSize = 2048; // Taille maximale en kilo-octets (ici, 2 Mo).
