@@ -17,6 +17,9 @@ class ContactController extends Controller
 
     // Créez une instance de ContactMail en passant les données validées et l'adresse du destinataire
     $emailData = [
+        'firstname' => $validatedData['firstname'],
+        'lastname' => $validatedData['lastname'],
+        'email' => $validatedData['email'],
         'subject' => $validatedData['subject'],
         'message' => $validatedData['message'],
     ];

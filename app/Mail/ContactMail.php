@@ -21,8 +21,8 @@ class ContactMail extends Mailable
     public function build()
     {
         return $this
-            ->from('contact@mouman.fr', 'Votre Nom')
-            ->subject('Contact Mail') // Sujet de l'e-mail
+            ->from('contact@mouman.fr', 'mouman.fr')
+            ->subject('Nouvelle demande de contact') // Sujet de l'e-mail
             ->markdown('emails.contact', ['data' => $this->data]); // Vue Markdown pour le contenu de l'e-mail
     }
 }
