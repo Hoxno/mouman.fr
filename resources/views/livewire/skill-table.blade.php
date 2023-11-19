@@ -1,7 +1,6 @@
 <div class="max-h-96 overflow-y-auto" x-data="{ selected: []}">
     <x-danger-button x-show="selected.length > 0" x-on:click="$wire.deleteSkills(selected)">Supprimer</x-danger-button>
     <table class="table-auto w-full">
-        @dump($selected)
         <thead>
             <tr>
                 <th class="p-3.5 border-b-2 text-center border-r-[1px]"></th>
