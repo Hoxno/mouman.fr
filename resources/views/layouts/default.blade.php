@@ -16,13 +16,13 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script>
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark')
-    }
-</script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
 
 </head>
 <body class="antialiased text-primary dark:bg-dark__body text-base h-full md:m-0">
