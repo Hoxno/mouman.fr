@@ -6,6 +6,12 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+// Ajoutez un événement de clic au bouton de fermeture
+document.getElementById('close-flash-message').addEventListener('click', function() {
+    // Cachez l'élément flash message en utilisant la propriété style.display
+    document.getElementById('flash-message').style.display = 'none';
+  });
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -62,3 +68,4 @@ themeToggleBtn.addEventListener('click', function() {
     }
     
 });
+

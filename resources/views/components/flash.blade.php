@@ -1,5 +1,5 @@
 @if (session('success'))
-<div role="alert" class="rounded-xl border border-gray-100 bg-white p-4">
+<div id="flash-message" role="alert" class="rounded-xl border border-gray-100 bg-white p-4 mb-2">
   <div class="flex items-start gap-4">
     <span class="text-green-600">
       <svg
@@ -22,7 +22,7 @@
       <strong class="block font-medium text-gray-900"> {{session('success')}} </strong>
     </div>
 
-    <button class="text-gray-500 transition hover:text-gray-600">
+    <button id="close-flash-message" class="text-gray-500 transition hover:text-gray-600" data-mdb-dismiss="alert">
       <span class="sr-only">Dismiss popup</span>
 
       <svg
