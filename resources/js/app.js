@@ -1,16 +1,13 @@
 import './bootstrap';
 
 import Alpine from 'alpinejs';
+import ScrollReveal from 'scrollreveal';
 
 window.Alpine = Alpine;
 
 Alpine.start();
 
-// Ajoutez un événement de clic au bouton de fermeture
-document.getElementById('close-flash-message').addEventListener('click', function() {
-    // Cachez l'élément flash message en utilisant la propriété style.display
-    document.getElementById('flash-message').style.display = 'none';
-  });
+
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -69,3 +66,22 @@ themeToggleBtn.addEventListener('click', function() {
     
 });
 
+/*===== SCROLL REVEAL ANIMATION =====*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2000,
+    delay: 200,
+//     reset: true
+});
+
+sr.reveal('#about__img, #skills__title, #skills__subtitle , #skills__description',{}); 
+sr.reveal('#about, #about__description',{delay: 400}); 
+sr.reveal('#skills__data, #contact__input',{interval: 200});
+sr.reveal('#work, #school,#contact',{interval: 200});
+
+// Ajoutez un événement de clic au bouton de fermeture
+document.getElementById('close-flash-message').addEventListener('click', function() {
+    // Cachez l'élément flash message en utilisant la propriété style.display
+    document.getElementById('flash-message').style.display = 'none';
+  });

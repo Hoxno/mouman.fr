@@ -1,6 +1,6 @@
 <!-- ===== WORK =====-->
 <section class="py-8 md:pt-32 md:pb-12" id="work">
-    <h2 class="relative text-lg text-secondary mt-4 mb-8 text-center after:content-[''] after:absolute after:w-16 after:h-1 after:bg-secondary after:top-12 after:right-0 after:left-0 after:m-auto md:mb-12 md:after:w-20 md:after:top-12 dark:text-dark__secondary after:dark:bg-dark__secondary">
+    <h2 class="relative text-lg text-secondary mt-4 mb-8 text-center after:content-[''] after:absolute after:w-16 after:h-1 after:bg-secondary after:top-12 after:right-0 after:left-0 after:m-auto md:mb-12 md:after:w-20 md:after:top-12 dark:text-dark__secondary after:dark:bg-dark__secondary" id="work">
         Expériences
     </h2>
 

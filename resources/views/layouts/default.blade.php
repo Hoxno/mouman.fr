@@ -92,6 +92,5 @@
             <p class="text-center uppercase text-xs tracking-wider">© {{ date('Y') }} <a href="mouman.fr" class="no-underline text-[#8C8C8C] dark:text-[#8C8C8C]">mouman.fr</a> | tous droits réservés | Version 2.0</p>
         </div>
     </footer>
-    
 </body>
 </html>
