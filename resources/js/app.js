@@ -8,18 +8,27 @@ window.Alpine = Alpine;
 Alpine.start();
 
 
-
+// Cette fonction sélectionne tous les liens <a> dont l'attribut href commence par '#'
+// Elle ajoute un gestionnaire d'événement click à chaque lien pour permettre le défilement fluide
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Empêche le comportement par défaut du lien (le défilement brusque vers l'ancre)
 
+        // Récupère l'identifiant de l'élément cible à partir de l'attribut href du lien
         const targetId = this.getAttribute('href').substring(1);
+
+        // Recherche l'élément cible dans le document par son identifiant
         const targetElement = document.getElementById(targetId);
 
+        // Vérifie si l'élément cible existe dans le DOM
         if (targetElement) {
+            // Obtient la position verticale de l'élément cible par rapport au haut de la page
+            const offsetTop = targetElement.offsetTop;
+
+            // Effectue un défilement fluide vers l'élément cible en utilisant window.scrollTo()
             window.scrollTo({
-                top: targetElement.offsetTop,
-                behavior: 'smooth'
+                top: offsetTop,
+                behavior: 'smooth' // Défilement fluide avec une animation douce
             });
         }
     });
