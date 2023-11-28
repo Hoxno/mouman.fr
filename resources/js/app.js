@@ -8,6 +8,7 @@ window.Alpine = Alpine;
 Alpine.start();
 
 
+
 // Cette fonction sélectionne tous les liens <a> dont l'attribut href commence par '#'
 // Elle ajoute un gestionnaire d'événement click à chaque lien pour permettre le défilement fluide
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -33,6 +34,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
 
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
@@ -74,6 +76,39 @@ themeToggleBtn.addEventListener('click', function() {
     }
     
 });
+
+// start: Sidebar
+const sidebarToggle = document.querySelector('.sidebar-toggle')
+const sidebarOverlay = document.querySelector('.sidebar-overlay')
+const sidebarMenu = document.querySelector('.sidebar-menu')
+const main = document.querySelector('.main')
+sidebarToggle.addEventListener('click', function (e) {
+    e.preventDefault()
+    main.classList.toggle('active')
+    sidebarOverlay.classList.toggle('hidden')
+    sidebarMenu.classList.toggle('-translate-x-full')
+})
+sidebarOverlay.addEventListener('click', function (e) {
+    e.preventDefault()
+    main.classList.add('active')
+    sidebarOverlay.classList.add('hidden')
+    sidebarMenu.classList.add('-translate-x-full')
+})
+document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        e.preventDefault()
+        const parent = item.closest('.group')
+        if (parent.classList.contains('selected')) {
+            parent.classList.remove('selected')
+        } else {
+            document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (i) {
+                i.closest('.group').classList.remove('selected')
+            })
+            parent.classList.add('selected')
+        }
+    })
+})
+// end: Sidebar
 
 /*===== SCROLL REVEAL ANIMATION =====*/
 const sr = ScrollReveal({

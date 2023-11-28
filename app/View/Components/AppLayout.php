@@ -9,7 +9,7 @@ class AppLayout extends Component
 {
     public function __construct(public string $title= '')
     {
-        $this->title = config('app.name') . ($title ? " | $title" : " ");
+        $this->title = $title;
     }
 
     /**

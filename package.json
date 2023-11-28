@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^4.4.0",
+        "fontawesome": "^5.6.3",
+        "remixicon": "^3.5.0",
         "scrollreveal": "^4.0.9"
     }
 }

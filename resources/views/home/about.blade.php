@@ -1,4 +1,4 @@
-<section class="inline-block w-full h-full bg-primary py-24 clip-path-mypolygon dark:bg-[#0A2647] dark:text-white" id="about">
+<section class="inline-block w-full h-full bg-primary-900 py-24 clip-path-mypolygon dark:bg-primary__dark-950 dark:text-white" id="about">
     @foreach ($users as $user)
     <div class="mx-auto my-auto max-w-5xl grid md:grid-cols-2 md:text-left md:items-center text-center">
         <div class="justify-self-center w-64 h-64 md:w-[320px] md:h-[312px] border border-white border-solid rounded-full dark:border-gray-300" id="about__img">

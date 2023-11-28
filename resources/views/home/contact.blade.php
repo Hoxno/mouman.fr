@@ -15,7 +15,7 @@
             <div class="md:col-span-1">
                 <x-input type="textarea" label="Message : " id="message" name="message" :value="null" />
                 <div class="mt-6 text-center">
-                    <button class="inline-block bg-primary text-white px-6 py-3 rounded-full border-2 border-primary hover:bg-white hover:text-primary hover:border-primary hover:border-2 transition duration-300 dark:bg-dark__primary dark:text-dark__bg-dark__primary dark:border-dark__primary dark:border-2 dark:hover:bg-dark__primary dark:hover:text-dark__bg-dark__primary dark:hover:border-dark__primary dark:hover:border-2">{{ __('Envoyer') }}</button>
+                    <button class="inline-block bg-primary-900 text-white px-6 py-3 rounded-full border-2 border-primary-900 hover:bg-white hover:text-primary hover:border-primary-900 hover:border-2 transition duration-300 dark:bg-dark__primary dark:text-dark__bg-dark__primary dark:border-dark__primary dark:border-2 dark:hover:bg-dark__primary dark:hover:text-dark__bg-dark__primary dark:hover:border-dark__primary dark:hover:border-2">{{ __('Envoyer') }}</button>
                 </div>
             </div>
         </div>

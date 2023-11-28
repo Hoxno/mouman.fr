@@ -1,19 +1,20 @@
 <div class="max-h-96 overflow-y-auto" x-data="{ selected: []}">
     <x-danger-button x-show="selected.length > 0" x-on:click="$wire.deleteSkills(selected)">Supprimer</x-danger-button>
-    <table class="table-auto w-full">
-        <thead>
+    
+    <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-dark__body">
+        <thead class="bg-gray-50 dark:bg-dark__body">
             <tr>
-                <th class="p-3.5 border-b-2 text-center border-r-[1px]"></th>
-                <th class="p-3.5 border-b-2 text-center border-r-[1px]">Titre</th>
-                <th class="p-3.5 border-b-2 text-center border-r-[1px]">Niveau</th>
-                <th class="p-3.5 border-b-2 text-center border-r-[1px]">Description</th>
-                <th class="p-3.5 border-b-2 text-center">Actions</th>
+                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-600 py-6 px-4  text-left rounded-tl-md rounded-bl-md"></th>
+                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-600 py-6 px-4  text-left rounded-tl-md rounded-bl-md">Titre</th>
+                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-600 py-6 px-4  text-left rounded-tl-md rounded-bl-md">Niveau</th>
+                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-600 py-6 px-4  text-left rounded-tl-md rounded-bl-md">Description</th>
+                <th class="text-[12px] uppercase tracking-wide font-medium text-gray-600 py-6 px-4  text-left rounded-tl-md rounded-bl-md"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
             @foreach ($skills as $skill)
-                <tr>
-                    <td class="p-3.5 border-b-[1px] border-r-[1px]">
+                <tr class="hover:bg-gray-50">
+                    <td class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                         <input type="checkbox" x-model="selected" value="{{ $skill->id }}">
                     </td>
                     <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $skill->title }}</td>
@@ -33,6 +34,7 @@
                         <livewire:skill-form :skill="$skill" :key="$skill->id"/>
                     </tr>
                 @endif
+                
             @endforeach
         </tbody>
     </table>

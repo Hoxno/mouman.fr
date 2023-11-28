@@ -25,16 +25,14 @@
     </script>
 
 </head>
-<body class="antialiased text-primary dark:bg-dark__body text-base h-full md:m-0">
+<body class="antialiased text-primary-900 dark:bg-dark__body text-base h-full md:m-0">
     
         {{-- Header --}}
-<header class="flex w-full fixed top-0 left-0 bg-[#fff] z-50 shadow-3xl dark:bg-dark__body dark:text-white">
+<header class="flex w-full fixed top-0 left-0 bg-white z-50 shadow-3xl dark:bg-dark__body dark:text-white">
     {{-- Navigation --}}
     <nav class="flex h-16 max-w-5xl gap-2 w-full justify-between items-center bd-grid">
         {{-- Logo --}}
-        <a class="text-primary dark:text-white" href="{{ route('index') }}">
-            Mohamed MOUMAN
-        </a>
+        <a class="text-primary-900 dark:text-white" href="{{ route('index') }}"> Mohamed MOUMAN </a>
 
         <!-- Bouton de bascule du mode sombre -->
         <button id="theme-toggle" type="button"
