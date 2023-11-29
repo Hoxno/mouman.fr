@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title') | Administration</title>
-        @livewireStyles
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -23,6 +22,5 @@
                 {{ $slot }}
             </main>
             <script src="https://unpkg.com/@popperjs/core@2"></script>
-        @livewireScripts
     </body>
 </html>
