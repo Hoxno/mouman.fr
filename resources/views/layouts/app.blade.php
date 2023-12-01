@@ -17,10 +17,9 @@
     <body class="text-gray-800 font-inter dark:bg-dark__body">
         @include('layouts.sidebar')
             <!-- Page Content -->
-            <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main dark:bg-dark__body">
-                @include('layouts.topbar')
-                {{ $slot }}
-            </main>
-            <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main dark:bg-dark__body">
+            @include('layouts.topbar')
+            {{ $slot }}
+        </main>
     </body>
 </html>

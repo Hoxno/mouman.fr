@@ -14,8 +14,6 @@
                 <div class="p-6 text-gray-900">
                     <div class="overflow-hidden">
                         <div class="max-h-96 overflow-y-auto" x-data="{ selected: []}">
-                            <x-danger-button x-show="selected.length > 0" x-on:click="$wire.deleteSkills(selected)">Supprimer</x-danger-button>
-                            
                             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-dark__body">
                                 <thead class="bg-gray-50 dark:bg-dark__body">
                                     <tr>
