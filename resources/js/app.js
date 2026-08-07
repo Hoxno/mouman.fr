@@ -36,64 +36,74 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
+// start: Theme
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-// Change the icons inside the button based on previous settings
-if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    themeToggleLightIcon.classList.remove('hidden');
-} else {
-    themeToggleDarkIcon.classList.remove('hidden');
-}
-
 var themeToggleBtn = document.getElementById('theme-toggle');
 
-themeToggleBtn.addEventListener('click', function() {
+// Le bouton de thème n'existe pas sur toutes les pages
+if (themeToggleBtn && themeToggleDarkIcon && themeToggleLightIcon) {
 
-    // Change l'icone dans le bouton
-    themeToggleDarkIcon.classList.toggle('hidden');
-    themeToggleLightIcon.classList.toggle('hidden');
-
-    // if set via local storage previously
-    if (localStorage.getItem('color-theme')) {
-        if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-        }
-
-    // if NOT set via local storage previously
+    // Change the icons inside the button based on previous settings
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
     } else {
-        if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-        }
+        themeToggleDarkIcon.classList.remove('hidden');
     }
-    
-});
+
+    themeToggleBtn.addEventListener('click', function() {
+
+        // Change l'icone dans le bouton
+        themeToggleDarkIcon.classList.toggle('hidden');
+        themeToggleLightIcon.classList.toggle('hidden');
+
+        // if set via local storage previously
+        if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            }
+
+        // if NOT set via local storage previously
+        } else {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+
+    });
+}
+// end: Theme
 
 // start: Sidebar
 const sidebarToggle = document.querySelector('.sidebar-toggle')
 const sidebarOverlay = document.querySelector('.sidebar-overlay')
 const sidebarMenu = document.querySelector('.sidebar-menu')
 const main = document.querySelector('.main')
-sidebarToggle.addEventListener('click', function (e) {
-    e.preventDefault()
-    main.classList.toggle('active')
-    sidebarOverlay.classList.toggle('hidden')
-    sidebarMenu.classList.toggle('-translate-x-full')
-})
-sidebarOverlay.addEventListener('click', function (e) {
-    e.preventDefault()
-    main.classList.add('active')
-    sidebarOverlay.classList.add('hidden')
-    sidebarMenu.classList.add('-translate-x-full')
-})
+
+// La sidebar n'est présente que sur les pages du dashboard
+if (sidebarToggle && sidebarOverlay && sidebarMenu && main) {
+    sidebarToggle.addEventListener('click', function (e) {
+        e.preventDefault()
+        main.classList.toggle('active')
+        sidebarOverlay.classList.toggle('hidden')
+        sidebarMenu.classList.toggle('-translate-x-full')
+    })
+    sidebarOverlay.addEventListener('click', function (e) {
+        e.preventDefault()
+        main.classList.add('active')
+        sidebarOverlay.classList.add('hidden')
+        sidebarMenu.classList.add('-translate-x-full')
+    })
+}
+
 document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
     item.addEventListener('click', function (e) {
         e.preventDefault()
@@ -119,13 +129,18 @@ const sr = ScrollReveal({
 //     reset: true
 });
 
-sr.reveal('#about__img, #skills__title, #skills__subtitle , #skills__description',{}); 
-sr.reveal('#about, #about__description',{delay: 400}); 
+sr.reveal('#about__img, #skills__title, #skills__subtitle , #skills__description',{});
+sr.reveal('#about, #about__description',{delay: 400});
 sr.reveal('#skills__data, #contact__input',{interval: 200});
 sr.reveal('#work, #school,#contact',{interval: 200});
 
 // Ajoutez un événement de clic au bouton de fermeture
-document.getElementById('close-flash-message').addEventListener('click', function() {
-    // Cachez l'élément flash message en utilisant la propriété style.display
-    document.getElementById('flash-message').style.display = 'none';
-  });
+// Le message flash n'est affiché qu'après certaines actions
+const closeFlashMessage = document.getElementById('close-flash-message');
+
+if (closeFlashMessage) {
+    closeFlashMessage.addEventListener('click', function() {
+        // Cachez l'élément flash message en utilisant la propriété style.display
+        document.getElementById('flash-message').style.display = 'none';
+    });
+}
