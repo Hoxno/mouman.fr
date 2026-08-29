@@ -13,7 +13,7 @@
                 @if ($work->end_date == NULL or $work->end_date == '1900-01-01')
                     Depuis le {{ Carbon\Carbon::parse($work->start_date)->format( 'j/m/Y' ) }} : {{ $work->title }}
                 @else
-                    De {{ Carbon\Carbon::parse($work->start_date)->format( 'j/m/Y' ) }} au {{ Carbon\Carbon::parse($work->end_date)->format( 'j/m/Y' ) }}
+                    De {{ Carbon\Carbon::parse($work->start_date)->format( 'j/m/Y' ) }} au {{ Carbon\Carbon::parse($work->end_date)->format( 'j/m/Y' ) }} : {{ $work->title }}
                 @endif
             </h2>
             <div class="flex items-center mb-2">

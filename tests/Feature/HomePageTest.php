@@ -89,3 +89,45 @@ it('echappe le html contenu dans les descriptions', function () {
         ->not->toContain("<script>alert('school')</script>")
         ->toContain('&lt;script&gt;');
 });
+
+it('affiche le titre des experiences terminees comme des experiences en cours', function (?string $fin) {
+    Work::factory()->create([
+        'title' => 'IntituleDuPoste',
+        'start_date' => '2020-01-01',
+        'end_date' => $fin,
+    ]);
+
+    get('/')->assertOk()->assertSee('IntituleDuPoste');
+})->with([
+    'terminee' => '2022-12-31',
+    'en cours (null)' => null,
+    'en cours (sentinelle)' => '1900-01-01',
+]);
+
+it('affiche le titre des formations terminees comme des formations en cours', function (?string $fin) {
+    School::factory()->create([
+        'title' => 'IntituleDuDiplome',
+        'start_date' => '2016-09-01',
+        'end_date' => $fin,
+    ]);
+
+    get('/')->assertOk()->assertSee('IntituleDuDiplome');
+})->with([
+    'terminee' => '2018-06-30',
+    'en cours (null)' => null,
+    'en cours (sentinelle)' => '1900-01-01',
+]);
+
+it('affiche la periode complete pour une experience terminee', function () {
+    Work::factory()->create([
+        'title' => 'PosteTermine',
+        'start_date' => '2020-03-15',
+        'end_date' => '2022-11-30',
+    ]);
+
+    get('/')
+        ->assertOk()
+        ->assertSee('15/03/2020')
+        ->assertSee('30/11/2022')
+        ->assertSee('PosteTermine');
+});
