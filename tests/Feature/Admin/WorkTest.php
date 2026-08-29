@@ -82,3 +82,48 @@ it('supprime une experience', function () {
 
     expect(Work::find($work->id))->toBeNull();
 });
+
+it('refuse une date de fin anterieure au debut', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/work', donneesWork([
+            'start_date' => '2024-01-01',
+            'end_date' => '2023-01-01',
+        ]))
+        ->assertSessionHasErrors('end_date');
+
+    expect(Work::count())->toBe(0);
+});
+
+it('refuse une date de fin egale au debut', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/work', donneesWork([
+            'start_date' => '2024-01-01',
+            'end_date' => '2024-01-01',
+        ]))
+        ->assertSessionHasErrors('end_date');
+
+    expect(Work::count())->toBe(0);
+});
+
+it('accepte une experience en cours', function (?string $fin) {
+    actingAs($this->admin)
+        ->post('/dashboard/work', donneesWork([
+            'start_date' => '2024-01-01',
+            'end_date' => $fin,
+        ]))
+        ->assertSessionHasNoErrors();
+
+    expect(Work::count())->toBe(1);
+})->with([
+    'sentinelle 1900-01-01' => '1900-01-01',
+    'chaine vide' => '',
+    'valeur nulle' => null,
+]);
+
+it('refuse une date de debut non valide', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/work', donneesWork(['start_date' => 'pas-une-date']))
+        ->assertSessionHasErrors('start_date');
+
+    expect(Work::count())->toBe(0);
+});

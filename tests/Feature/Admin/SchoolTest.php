@@ -82,3 +82,29 @@ it('supprime une formation', function () {
 
     expect(School::find($school->id))->toBeNull();
 });
+
+it('refuse une date de fin anterieure au debut', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/school', donneesSchool([
+            'start_date' => '2020-09-01',
+            'end_date' => '2019-06-30',
+        ]))
+        ->assertSessionHasErrors('end_date');
+
+    expect(School::count())->toBe(0);
+});
+
+it('accepte une formation en cours', function (?string $fin) {
+    actingAs($this->admin)
+        ->post('/dashboard/school', donneesSchool([
+            'start_date' => '2020-09-01',
+            'end_date' => $fin,
+        ]))
+        ->assertSessionHasNoErrors();
+
+    expect(School::count())->toBe(1);
+})->with([
+    'sentinelle 1900-01-01' => '1900-01-01',
+    'chaine vide' => '',
+    'valeur nulle' => null,
+]);

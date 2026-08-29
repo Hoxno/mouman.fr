@@ -3,9 +3,18 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FormWorkRequest extends FormRequest
 {
+    /**
+     * Date sentinelle signalant une expérience toujours en cours.
+     *
+     * Les vues publiques la traitent comme l'absence de date de fin,
+     * au même titre que null : voir resources/views/home/work.blade.php.
+     */
+    public const EN_COURS = '1900-01-01';
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -25,10 +34,36 @@ class FormWorkRequest extends FormRequest
             'title' => ['required', 'min:3'],
             'company' => ['required', 'min:3'],
             'city' => ['required', 'min:3'],
-            'start_date' => ['required'],
-            'end_date' => ['min:0'],
+            'start_date' => ['required', 'date'],
+            'end_date' => [
+                'nullable',
+                'date',
+                // La sentinelle "en cours" échappe à la comparaison,
+                // sans quoi toute expérience non terminée serait rejetée.
+                Rule::when(
+                    fn (): bool => $this->input('end_date') !== self::EN_COURS,
+                    ['after:start_date']
+                ),
+            ],
             'description' => ['required', 'min:3'],
-            'online' => ['min:0'],
+            'online' => ['nullable', 'in:0,1'],
+        ];
+    }
+
+    /**
+     * Libellés utilisés dans les messages d'erreur.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'title' => 'intitulé du poste',
+            'company' => 'entreprise',
+            'city' => 'ville',
+            'start_date' => 'date de début',
+            'end_date' => 'date de fin',
+            'description' => 'description',
         ];
     }
 }
