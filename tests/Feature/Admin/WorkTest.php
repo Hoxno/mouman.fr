@@ -127,3 +127,50 @@ it('refuse une date de debut non valide', function () {
 
     expect(Work::count())->toBe(0);
 });
+
+it('formate les dates du tableau en d/m/Y', function () {
+    Work::factory()->create([
+        'company' => 'SocieteFormat',
+        'start_date' => '2021-06-01',
+        'end_date' => '2023-09-05',
+    ]);
+
+    actingAs($this->admin)
+        ->get('/dashboard/work')
+        ->assertOk()
+        ->assertSee('01/06/2021')
+        ->assertSee('05/09/2023')
+        ->assertDontSee('2021-06-01')
+        ->assertDontSee('2023-09-05');
+});
+
+it('signale les experiences en cours dans le tableau', function (?string $fin) {
+    Work::factory()->create([
+        'company' => 'SocieteEnCours',
+        'start_date' => '2024-01-01',
+        'end_date' => $fin,
+    ]);
+
+    actingAs($this->admin)
+        ->get('/dashboard/work')
+        ->assertOk()
+        ->assertSee('En cours')
+        // La sentinelle ne doit jamais transparaitre dans l'interface.
+        ->assertDontSee('01/01/1900')
+        // Carbon::parse(null) renverrait la date du jour.
+        ->assertDontSee(now()->format('d/m/Y'));
+})->with([
+    'valeur nulle' => null,
+    'sentinelle' => '1900-01-01',
+]);
+
+it('ne laisse aucune directive blade non compilee dans le tableau', function () {
+    Work::factory()->create(['end_date' => '2023-09-05']);
+    Work::factory()->create(['end_date' => null]);
+
+    $html = actingAs($this->admin)->get('/dashboard/work')->assertOk()->getContent();
+
+    expect($html)
+        ->not->toContain('@else')
+        ->not->toContain('@endif');
+});

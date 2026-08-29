@@ -108,3 +108,31 @@ it('accepte une formation en cours', function (?string $fin) {
     'chaine vide' => '',
     'valeur nulle' => null,
 ]);
+
+it('formate les dates du tableau en d/m/Y', function () {
+    School::factory()->create([
+        'school' => 'EcoleFormat',
+        'start_date' => '2016-09-02',
+        'end_date' => '2018-06-30',
+    ]);
+
+    actingAs($this->admin)
+        ->get('/dashboard/school')
+        ->assertOk()
+        ->assertSee('02/09/2016')
+        ->assertSee('30/06/2018')
+        ->assertDontSee('2016-09-02');
+});
+
+it('signale les formations en cours dans le tableau', function (?string $fin) {
+    School::factory()->create(['school' => 'EcoleEnCours', 'end_date' => $fin]);
+
+    actingAs($this->admin)
+        ->get('/dashboard/school')
+        ->assertOk()
+        ->assertSee('En cours')
+        ->assertDontSee('01/01/1900');
+})->with([
+    'valeur nulle' => null,
+    'sentinelle' => '1900-01-01',
+]);

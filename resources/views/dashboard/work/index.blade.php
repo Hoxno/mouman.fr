@@ -33,8 +33,14 @@
                                             </td>
                                             <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $work->title }}</td>
                                             <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $work->company }}</td>
-                                            <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $work->start_date }}</td>
-                                            <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $work->end_date }}</td>
+                                            <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $work->start_date ? Carbon\Carbon::parse($work->start_date)->format('d/m/Y') : '' }}</td>
+                                            <td class="p-3.5 border-b-[1px] border-r-[1px]">
+                                                @if ($work->end_date === null || $work->end_date === '1900-01-01')
+                                                    En cours
+                                                @else
+                                                    {{ Carbon\Carbon::parse($work->end_date)->format('d/m/Y') }}
+                                                @endif
+                                            </td>
                                             <td class="p-3.5 border-b-[1px]">
                                                 <div class="flex gap-2 justify-end">
                                                     @include('dashboard.work.partials.edit')
