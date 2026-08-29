@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group( function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware(['auth', 'verified'])->group( function () {
     Route::resource('skill', SkillController::class)->except('show');
     Route::resource('work', WorkController::class)->except('show');
     Route::resource('school', SchoolController::class)->except('show');
