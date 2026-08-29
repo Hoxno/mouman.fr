@@ -21,7 +21,7 @@
             {{ $school->school }} à {{ $school->city }}
         </div>
         <p class="text-gray-600 dark:text-gray-300">
-            {!! nl2br($school->description) !!}
+            {!! nl2br(e($school->description)) !!}
         </p>
         </div>
         

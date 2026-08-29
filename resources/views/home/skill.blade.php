@@ -8,7 +8,7 @@
             @if ($skill->level === null)
                 <div>
                     <h2 class="text-lg text-primary font-semibold mb-2 dark:text-dark__primary" id="skills__subtitle">{{ $skill->title }}</h2>
-                    <p class="text-gray-600 dark:text-gray-300" id="skills__description">{!! nl2br($skill->description) !!}</p>
+                    <p class="text-gray-600 dark:text-gray-300" id="skills__description">{!! nl2br(e($skill->description)) !!}</p>
                 </div>
             @endif
         @endforeach

@@ -20,7 +20,7 @@
                 <i class="fa fa-building mr-2 text-base text-primary dark:text-dark__primary"></i>
                 {{ $work->company }} à {{ $work->city }}
             </div>
-            <p class="text-gray-600 dark:text-gray-300">{!! nl2br($work->description) !!}</p>
+            <p class="text-gray-600 dark:text-gray-300">{!! nl2br(e($work->description)) !!}</p>
             </div>
         @endforeach
     </div>
