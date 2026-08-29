@@ -32,7 +32,7 @@
                                                 <input type="checkbox" x-model="selected" value="{{ $school->id }}">
                                             </td>
                                             <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $school->title }}</td>
-                                            <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $school->establishment }}</td>
+                                            <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $school->school }}</td>
                                             <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $school->start_date }}</td>
                                             <td class="p-3.5 border-b-[1px] border-r-[1px]">{{ $school->end_date }}</td>
                                             <td class="p-3.5 border-b-[1px]">
