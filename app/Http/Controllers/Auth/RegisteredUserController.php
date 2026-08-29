@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,8 +19,8 @@ class RegisteredUserController extends Controller
     public function create(): View|RedirectResponse
     {
         if (User::count() > 0) {
-            // S'il y a déjà un utilisateur enregistré, redirigez-le vers une autre vue (par exemple, la page d'accueil).
-            return redirect(RouteServiceProvider::HOME);
+            // S'il y a dÃ©jÃ  un utilisateur enregistrÃ©, redirigez-le vers une autre vue (par exemple, la page d'accueil).
+            return redirect(route('index'));
         }
 
         return view('auth.register');
@@ -34,10 +33,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Vérifiez à nouveau s'il y a déjà un utilisateur enregistré.
+        // VÃ©rifiez Ã  nouveau s'il y a dÃ©jÃ  un utilisateur enregistrÃ©.
         if (User::count() > 0) {
-            // S'il y a déjà un utilisateur enregistré, redirigez-le vers une autre vue (par exemple, la page d'accueil).
-            return redirect(RouteServiceProvider::HOME);
+            // S'il y a dÃ©jÃ  un utilisateur enregistrÃ©, redirigez-le vers une autre vue (par exemple, la page d'accueil).
+            return redirect(route('index'));
         }
 
         $request->validate([
@@ -54,6 +53,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('index'));
     }
 }

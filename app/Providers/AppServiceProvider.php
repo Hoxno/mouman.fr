@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blade::directive('date_resume', function (string $expression) {
-            return "<?php= ($expression)->formatformat( 'j F Y' ) ; ?>";
+            return "<?php echo ($expression)->format('j F Y'); ?>";
         });
     }
 }
