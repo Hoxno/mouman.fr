@@ -13,9 +13,9 @@ class HomeController extends Controller
     public function index () :View
     {
         $users = User::all();
-        $skills = Skill::orderBy('order', 'asc')->get();
-        $works = Work::orderBy('start_date', 'desc')->get();
-        $schools = School::orderBy('start_date', 'desc')->get();
+        $skills = Skill::where('online', '1')->orderBy('order', 'asc')->get();
+        $works = Work::where('online', '1')->orderBy('start_date', 'desc')->get();
+        $schools = School::where('online', '1')->orderBy('start_date', 'desc')->get();
         return view('home.index', compact('users', 'skills', 'works', 'schools'));
     }
 }
