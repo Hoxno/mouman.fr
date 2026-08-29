@@ -138,3 +138,27 @@ it('refuse un niveau hors bornes', function (string $niveau) {
 
     expect(Skill::count())->toBe(0);
 })->with(['101', '150', '-1', 'beaucoup', '7.5']);
+
+it('exige un ordre, la colonne etant NOT NULL sans defaut', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', ['title' => 'Sans ordre', 'level' => '50'])
+        ->assertSessionHasErrors('order');
+
+    expect(Skill::count())->toBe(0);
+});
+
+it('accepte un ordre valide', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', ['title' => 'Avec ordre', 'order' => '0'])
+        ->assertSessionHasNoErrors();
+
+    expect(Skill::where('title', 'Avec ordre')->exists())->toBeTrue();
+});
+
+it('refuse un ordre invalide', function (string $ordre) {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', ['title' => 'Ordre invalide', 'order' => $ordre])
+        ->assertSessionHasErrors('order');
+
+    expect(Skill::count())->toBe(0);
+})->with(['-1', '2.5', 'premier']);

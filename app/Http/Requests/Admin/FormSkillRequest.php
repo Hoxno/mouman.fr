@@ -38,7 +38,7 @@ class FormSkillRequest extends FormRequest
         return [
             'title' => ['required' ,'min:3'],
             'level' => ['nullable', 'integer', 'between:0,100'],
-            'order' => ['min:0'],
+            'order' => ['required', 'integer', 'min:0'],
             'description' => ['min:0']
         ];
     }
