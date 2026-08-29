@@ -131,3 +131,27 @@ it('affiche la periode complete pour une experience terminee', function () {
         ->assertSee('30/11/2022')
         ->assertSee('PosteTermine');
 });
+
+it('affiche les jours a un chiffre avec un zero initial', function () {
+    Work::factory()->create([
+        'title' => 'PosteZeroInitial',
+        'start_date' => '2021-06-01',
+        'end_date' => '2023-09-05',
+    ]);
+    School::factory()->create([
+        'title' => 'DiplomeZeroInitial',
+        'start_date' => '2016-09-02',
+        'end_date' => null,
+    ]);
+
+    $html = get('/')->assertOk()->getContent();
+
+    // Chaines ancrees sur le texte qui precede : '01/06/2021' contient
+    // '1/06/2021', une negation nue serait donc toujours fausse.
+    expect($html)
+        ->toContain('De 01/06/2021 au 05/09/2023')
+        ->toContain('Depuis le 02/09/2016')
+        ->not->toContain('De 1/06/2021')
+        ->not->toContain('au 5/09/2023')
+        ->not->toContain('Depuis le 2/09/2016');
+});
