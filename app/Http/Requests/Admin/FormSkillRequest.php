@@ -19,11 +19,25 @@ class FormSkillRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    /**
+     * Libelles utilises dans les messages d'erreur.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'title' => 'titre',
+            'level' => 'niveau',
+            'order' => 'ordre',
+        ];
+    }
+
     public function rules(): array
     {
         return [
             'title' => ['required' ,'min:3'],
-            'level' => ['min:0'],
+            'level' => ['nullable', 'integer', 'between:0,100'],
             'order' => ['min:0'],
             'description' => ['min:0']
         ];

@@ -104,3 +104,37 @@ it('n expose pas de route show', function () {
     // L'URI existe pour PUT/PATCH/DELETE : un GET y est refuse en 405.
     actingAs($this->admin)->get('/dashboard/skill/'.$skill->id)->assertMethodNotAllowed();
 });
+
+it('accepte un niveau aux bornes', function () {
+    foreach (['0', '100', '70'] as $niveau) {
+        actingAs($this->admin)
+            ->post('/dashboard/skill', [
+                'title' => 'Competence '.$niveau,
+                'level' => $niveau,
+                'order' => '1',
+            ])
+            ->assertSessionHasNoErrors();
+    }
+
+    expect(Skill::count())->toBe(3);
+});
+
+it('accepte un niveau absent', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', ['title' => 'Sans niveau', 'order' => '1'])
+        ->assertSessionHasNoErrors();
+
+    expect(Skill::where('title', 'Sans niveau')->exists())->toBeTrue();
+});
+
+it('refuse un niveau hors bornes', function (string $niveau) {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', [
+            'title' => 'Competence invalide',
+            'level' => $niveau,
+            'order' => '1',
+        ])
+        ->assertSessionHasErrors('level');
+
+    expect(Skill::count())->toBe(0);
+})->with(['101', '150', '-1', 'beaucoup', '7.5']);
