@@ -27,6 +27,7 @@
                             </div>
 
                             <x-input type="textarea" label="Description" name="description" :value="$school->description"></x-input>
+                            <x-checkbox-field name="online" label="Publication" :value="$school->online" help="Visible sur le site public" />
                         </div>
                         
                         <div class="mt-6 flex items-center justify-end">

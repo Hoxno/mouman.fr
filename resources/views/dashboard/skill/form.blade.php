@@ -30,6 +30,7 @@
                                 </div>
                                 <div class="w-1/2 space-y-4">
                                     <x-input name="description" label="Description" :type="'textarea'" :value="$skill->description" />
+                                    <x-checkbox-field name="online" label="Publication" :value="$skill->online" help="Visible sur le site public" />
                                 </div>
                             </div>
                         </div>

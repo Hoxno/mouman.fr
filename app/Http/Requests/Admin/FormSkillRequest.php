@@ -30,6 +30,7 @@ class FormSkillRequest extends FormRequest
             'title' => 'titre',
             'level' => 'niveau',
             'order' => 'ordre',
+            'online' => 'publication',
         ];
     }
 
@@ -39,7 +40,8 @@ class FormSkillRequest extends FormRequest
             'title' => ['required' ,'min:3'],
             'level' => ['nullable', 'integer', 'between:0,100'],
             'order' => ['required', 'integer', 'min:0'],
-            'description' => ['min:0']
+            'description' => ['min:0'],
+            'online' => ['nullable', 'in:0,1'],
         ];
     }
 }

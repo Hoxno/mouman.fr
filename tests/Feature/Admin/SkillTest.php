@@ -162,3 +162,46 @@ it('refuse un ordre invalide', function (string $ordre) {
 
     expect(Skill::count())->toBe(0);
 })->with(['-1', '2.5', 'premier']);
+
+it('cree une competence publiee quand la case est cochee', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', [
+            'title' => 'Publiee', 'order' => '1', 'online' => '1',
+        ])
+        ->assertSessionHasNoErrors();
+
+    expect(Skill::where('title', 'Publiee')->first()->online)->toBe('1');
+});
+
+it('cree une competence masquee quand la case est decochee', function () {
+    // Case decochee : seul le champ cache est transmis.
+    actingAs($this->admin)
+        ->post('/dashboard/skill', [
+            'title' => 'Masquee', 'order' => '1', 'online' => '0',
+        ])
+        ->assertSessionHasNoErrors();
+
+    expect(Skill::where('title', 'Masquee')->first()->online)->toBe('0');
+});
+
+it('permet de depublier une competence existante', function () {
+    $skill = Skill::factory()->create(['title' => 'A depublier', 'online' => '1']);
+
+    actingAs($this->admin)
+        ->put(route('dashboard.skill.update', $skill), [
+            'title' => 'A depublier', 'order' => '1', 'online' => '0',
+        ])
+        ->assertSessionHasNoErrors();
+
+    expect($skill->fresh()->online)->toBe('0');
+});
+
+it('refuse une valeur de publication inattendue', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/skill', [
+            'title' => 'Valeur douteuse', 'order' => '1', 'online' => 'oui',
+        ])
+        ->assertSessionHasErrors('online');
+
+    expect(Skill::count())->toBe(0);
+});

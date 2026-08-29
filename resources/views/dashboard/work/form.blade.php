@@ -24,6 +24,7 @@
                                 <x-input type="date" label="Date de fin" name="end_date" :value="$work->end_date" required></x-input>
                             </div>
                             <x-input type="textarea" label="Description" name="description" :value="$work->description" required></x-input>
+                            <x-checkbox-field name="online" label="Publication" :value="$work->online" help="Visible sur le site public" />
                         </div>
                         
                         <div class="mt-6 flex items-center justify-end">
