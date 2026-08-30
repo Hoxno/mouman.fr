@@ -15,11 +15,6 @@ class FormSkillRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    /**
      * Libelles utilises dans les messages d'erreur.
      *
      * @return array<string, string>
@@ -34,6 +29,11 @@ class FormSkillRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
     public function rules(): array
     {
         return [

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Work extends Model
 {
+    /** @use HasFactory<\Database\Factories\WorkFactory> */
     use HasFactory;
 
     protected $fillable = [
