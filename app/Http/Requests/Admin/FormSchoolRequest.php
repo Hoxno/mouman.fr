@@ -42,7 +42,7 @@ class FormSchoolRequest extends FormRequest
                 // sans quoi toute formation non terminée serait rejetée.
                 Rule::when(
                     fn (): bool => $this->input('end_date') !== self::EN_COURS,
-                    ['after:start_date']
+                    ['after_or_equal:start_date']
                 ),
             ],
             'description' => ['required', 'min:3'],

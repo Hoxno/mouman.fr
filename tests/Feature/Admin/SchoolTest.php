@@ -136,3 +136,26 @@ it('signale les formations en cours dans le tableau', function (?string $fin) {
     'valeur nulle' => null,
     'sentinelle' => '1900-01-01',
 ]);
+
+it('accepte une date de fin egale au debut', function () {
+    // Une formation d'une seule journee est legitime.
+    actingAs($this->admin)
+        ->post('/dashboard/school', donneesSchool([
+            'start_date' => '2020-09-01',
+            'end_date' => '2020-09-01',
+        ]))
+        ->assertSessionHasNoErrors();
+
+    expect(School::count())->toBe(1);
+});
+
+it('refuse toujours une date de fin anterieure d un jour', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/school', donneesSchool([
+            'start_date' => '2020-09-02',
+            'end_date' => '2020-09-01',
+        ]))
+        ->assertSessionHasErrors('end_date');
+
+    expect(School::count())->toBe(0);
+});

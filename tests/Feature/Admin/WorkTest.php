@@ -94,15 +94,16 @@ it('refuse une date de fin anterieure au debut', function () {
     expect(Work::count())->toBe(0);
 });
 
-it('refuse une date de fin egale au debut', function () {
+it('accepte une date de fin egale au debut', function () {
+    // Une mission d'une seule journee est legitime.
     actingAs($this->admin)
         ->post('/dashboard/work', donneesWork([
             'start_date' => '2024-01-01',
             'end_date' => '2024-01-01',
         ]))
-        ->assertSessionHasErrors('end_date');
+        ->assertSessionHasNoErrors();
 
-    expect(Work::count())->toBe(0);
+    expect(Work::count())->toBe(1);
 });
 
 it('accepte une experience en cours', function (?string $fin) {
@@ -173,4 +174,15 @@ it('ne laisse aucune directive blade non compilee dans le tableau', function () 
     expect($html)
         ->not->toContain('@else')
         ->not->toContain('@endif');
+});
+
+it('refuse toujours une date de fin anterieure d un jour', function () {
+    actingAs($this->admin)
+        ->post('/dashboard/work', donneesWork([
+            'start_date' => '2024-01-02',
+            'end_date' => '2024-01-01',
+        ]))
+        ->assertSessionHasErrors('end_date');
+
+    expect(Work::count())->toBe(0);
 });
