@@ -2,32 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormSchoolRequest;
 use App\Models\School;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class SchoolController extends Controller
+class SchoolController extends ResourceController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): View
+    protected function model(): string
     {
-        return view('dashboard.school.index', [
-            'schools' => School::all(),
-        ]);
+        return School::class;
+    }
+
+    protected function prefix(): string
+    {
+        return 'dashboard.school';
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return array{0: string, 1: string}
      */
-    public function create(): View
+    protected function variables(): array
     {
-        return view('dashboard.school.form', [
-            'school' => new School,
-        ]);
+        return ['school', 'schools'];
+    }
+
+    /**
+     * @return array{created: string, updated: string, deleted: string}
+     */
+    protected function messages(): array
+    {
+        return [
+            'created' => 'La formation ajoutée avec succès !',
+            'updated' => 'La formation mise à jour avec succès !',
+            'deleted' => 'La formation supprimée avec succès !',
+        ];
     }
 
     /**
@@ -35,39 +43,14 @@ class SchoolController extends Controller
      */
     public function store(FormSchoolRequest $request): RedirectResponse
     {
-        $school = School::create($request->validated());
-
-        return to_route('dashboard.school.index')->with('success', 'La formation ajoutée avec succès !');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id): View
-    {
-        $school = School::findOrFail($id);
-
-        return view('dashboard.school.form', compact('school'));
+        return $this->enregistrer($request->validated());
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FormSchoolRequest $request, School $school): RedirectResponse
+    public function update(FormSchoolRequest $request, string $id): RedirectResponse
     {
-        $school->update($request->validated());
-
-        return to_route('dashboard.school.index')->with('success', 'La formation mise à jour avec succès !');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id): RedirectResponse
-    {
-        $school = School::findOrFail($id);
-        $school->delete();
-
-        return redirect()->route('dashboard.school.index')->with('success', 'La formation supprimée avec succès !');
+        return $this->enregistrer($request->validated(), $id);
     }
 }

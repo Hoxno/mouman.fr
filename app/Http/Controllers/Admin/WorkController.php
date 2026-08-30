@@ -2,32 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormWorkRequest;
 use App\Models\Work;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
-class WorkController extends Controller
+class WorkController extends ResourceController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): View
+    protected function model(): string
     {
-        return view('dashboard.work.index', [
-            'works' => Work::all(),
-        ]);
+        return Work::class;
+    }
+
+    protected function prefix(): string
+    {
+        return 'dashboard.work';
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return array{0: string, 1: string}
      */
-    public function create(): View
+    protected function variables(): array
     {
-        return view('dashboard.work.form', [
-            'work' => new Work,
-        ]);
+        return ['work', 'works'];
+    }
+
+    /**
+     * @return array{created: string, updated: string, deleted: string}
+     */
+    protected function messages(): array
+    {
+        return [
+            'created' => 'L\'expérience ajoutée avec succès !',
+            'updated' => 'L\'expérience mise à jour avec succès !',
+            'deleted' => 'L\'expérience supprimée avec succès !',
+        ];
     }
 
     /**
@@ -35,39 +43,14 @@ class WorkController extends Controller
      */
     public function store(FormWorkRequest $request): RedirectResponse
     {
-        $work = Work::create($request->validated());
-
-        return redirect()->route('dashboard.work.index')->with('success', 'L\'expérience ajoutée avec succès !');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id): View
-    {
-        $work = Work::findOrFail($id);
-
-        return view('dashboard.work.form', compact('work'));
+        return $this->enregistrer($request->validated());
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FormWorkRequest $request, Work $work): RedirectResponse
+    public function update(FormWorkRequest $request, string $id): RedirectResponse
     {
-        $work->update($request->validated());
-
-        return redirect()->route('dashboard.work.index')->with('success', 'L\'expérience mise à jour avec succès !');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id): RedirectResponse
-    {
-        $work = Work::findOrFail($id);
-        $work->delete();
-
-        return redirect()->route('dashboard.work.index')->with('success', 'L\'expérience supprimée avec succès !');
+        return $this->enregistrer($request->validated(), $id);
     }
 }

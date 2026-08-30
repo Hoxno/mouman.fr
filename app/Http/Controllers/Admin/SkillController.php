@@ -2,32 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormSkillRequest;
 use App\Models\Skill;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
-class SkillController extends Controller
+class SkillController extends ResourceController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): View
+    protected function model(): string
     {
-        return view('dashboard.skill.index', [
-            'skills' => Skill::all(),
-        ]);
+        return Skill::class;
+    }
+
+    protected function prefix(): string
+    {
+        return 'dashboard.skill';
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return array{0: string, 1: string}
      */
-    public function create(): View
+    protected function variables(): array
     {
-        return view('dashboard.skill.form', [
-            'skill' => new Skill,
-        ]);
+        return ['skill', 'skills'];
+    }
+
+    /**
+     * @return array{created: string, updated: string, deleted: string}
+     */
+    protected function messages(): array
+    {
+        return [
+            'created' => 'Compétence ajoutée avec succès !',
+            'updated' => 'Compétence mise à jour avec succès !',
+            'deleted' => 'Compétence supprimée avec succès !',
+        ];
     }
 
     /**
@@ -35,39 +43,14 @@ class SkillController extends Controller
      */
     public function store(FormSkillRequest $request): RedirectResponse
     {
-        $skill = Skill::create($request->validated());
-
-        return redirect()->route('dashboard.skill.index')->with('success', 'Compétence ajoutée avec succès !');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id): View
-    {
-        $skill = Skill::findOrFail($id);
-
-        return view('dashboard.skill.form', compact('skill'));
+        return $this->enregistrer($request->validated());
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FormSkillRequest $request, Skill $skill): RedirectResponse
+    public function update(FormSkillRequest $request, string $id): RedirectResponse
     {
-        $skill->update($request->validated());
-
-        return redirect()->route('dashboard.skill.index')->with('success', 'Compétence mise à jour avec succès !');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id): RedirectResponse
-    {
-        $skill = Skill::findOrFail($id);
-        $skill->delete();
-
-        return redirect()->route('dashboard.skill.index')->with('success', 'Compétence supprimée avec succès !');
+        return $this->enregistrer($request->validated(), $id);
     }
 }
