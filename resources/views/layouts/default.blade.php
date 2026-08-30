@@ -72,7 +72,7 @@
 
             <ul class="hidden md:flex space-x-12 font-semibold ml-12">
                 <li><a href="#about" class="relative">A propos</a></li>
-                <li><a href="#skills" class="relative">Compétance</a></li>
+                <li><a href="#skills" class="relative">Compétence</a></li>
                 <li><a href="#work" class="relative">Expérience</a></li>
                 <li><a href="#school" class="relative">Formation</a></li>
                 <li><a href="#contact" class="relative">Contact</a></li>
