@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Skill;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormSkillRequest;
-use Illuminate\View\View;
+use App\Models\Skill;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SkillController extends Controller
 {
@@ -16,7 +16,7 @@ class SkillController extends Controller
     public function index(): View
     {
         return view('dashboard.skill.index', [
-            'skills' => Skill::all()
+            'skills' => Skill::all(),
         ]);
     }
 
@@ -26,7 +26,7 @@ class SkillController extends Controller
     public function create(): View
     {
         return view('dashboard.skill.form', [
-            'skill' => new Skill()
+            'skill' => new Skill,
         ]);
     }
 
@@ -36,6 +36,7 @@ class SkillController extends Controller
     public function store(FormSkillRequest $request): RedirectResponse
     {
         $skill = Skill::create($request->validated());
+
         return redirect()->route('dashboard.skill.index')->with('success', 'Compétence ajoutée avec succès !');
     }
 
@@ -45,6 +46,7 @@ class SkillController extends Controller
     public function edit(string $id): View
     {
         $skill = Skill::findOrFail($id);
+
         return view('dashboard.skill.form', compact('skill'));
     }
 
@@ -54,6 +56,7 @@ class SkillController extends Controller
     public function update(FormSkillRequest $request, Skill $skill): RedirectResponse
     {
         $skill->update($request->validated());
+
         return redirect()->route('dashboard.skill.index')->with('success', 'Compétence mise à jour avec succès !');
     }
 
@@ -64,6 +67,7 @@ class SkillController extends Controller
     {
         $skill = Skill::findOrFail($id);
         $skill->delete();
+
         return redirect()->route('dashboard.skill.index')->with('success', 'Compétence supprimée avec succès !');
     }
 }

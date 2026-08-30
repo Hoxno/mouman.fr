@@ -16,12 +16,12 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstname' => ['string','max:10'],
-            'lastname' => ['string','max:10'],
-            'jobtitle'=> ['string','min:3'],
-            'about'=> ['min:3'],
+            'firstname' => ['string', 'max:10'],
+            'lastname' => ['string', 'max:10'],
+            'jobtitle' => ['string', 'min:3'],
+            'about' => ['min:3'],
             'image' => ['image', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
-            'pdf_file' => ['file','mimes:pdf', 'max:2048'],
+            'pdf_file' => ['file', 'mimes:pdf', 'max:2048'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
         ];
     }

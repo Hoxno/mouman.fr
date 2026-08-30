@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\WorkController;
-use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SchoolController;
+use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\WorkController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('dashboard')->name('dashboard.')->middleware(['auth', 'verified'])->group( function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('skill', SkillController::class)->except('show');
     Route::resource('work', WorkController::class)->except('show');
     Route::resource('school', SchoolController::class)->except('show');

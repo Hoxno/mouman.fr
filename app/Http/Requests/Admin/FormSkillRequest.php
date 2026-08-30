@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FormSkillRequest extends FormRequest
@@ -32,12 +33,12 @@ class FormSkillRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'title' => ['required' ,'min:3'],
+            'title' => ['required', 'min:3'],
             'level' => ['nullable', 'integer', 'between:0,100'],
             'order' => ['required', 'integer', 'min:0'],
             'description' => ['min:0'],

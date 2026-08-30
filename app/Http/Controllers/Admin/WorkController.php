@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Work;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormWorkRequest;
-use Illuminate\View\View;
+use App\Models\Work;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class WorkController extends Controller
 {
@@ -16,7 +16,7 @@ class WorkController extends Controller
     public function index(): View
     {
         return view('dashboard.work.index', [
-            'works' => Work::all()
+            'works' => Work::all(),
         ]);
     }
 
@@ -26,7 +26,7 @@ class WorkController extends Controller
     public function create(): View
     {
         return view('dashboard.work.form', [
-            'work' => new Work()
+            'work' => new Work,
         ]);
     }
 
@@ -36,6 +36,7 @@ class WorkController extends Controller
     public function store(FormWorkRequest $request): RedirectResponse
     {
         $work = Work::create($request->validated());
+
         return redirect()->route('dashboard.work.index')->with('success', 'L\'expérience ajoutée avec succès !');
     }
 
@@ -45,6 +46,7 @@ class WorkController extends Controller
     public function edit(string $id): View
     {
         $work = Work::findOrFail($id);
+
         return view('dashboard.work.form', compact('work'));
     }
 
@@ -54,6 +56,7 @@ class WorkController extends Controller
     public function update(FormWorkRequest $request, Work $work): RedirectResponse
     {
         $work->update($request->validated());
+
         return redirect()->route('dashboard.work.index')->with('success', 'L\'expérience mise à jour avec succès !');
     }
 
@@ -64,6 +67,7 @@ class WorkController extends Controller
     {
         $work = Work::findOrFail($id);
         $work->delete();
+
         return redirect()->route('dashboard.work.index')->with('success', 'L\'expérience supprimée avec succès !');
     }
 }

@@ -7,9 +7,9 @@ use Illuminate\View\View;
 
 class GuestLayout extends Component
 {
-    public function __construct(public string $title= '')
+    public function __construct(public string $title = '')
     {
-        $this->title = config('app.name') . ($title ? " | $title" : " ");
+        $this->title = config('app.name').($title ? " | $title" : ' ');
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Markdown;
 use Illuminate\Queue\SerializesModels;
 
 class ContactMail extends Mailable
@@ -14,14 +13,14 @@ class ContactMail extends Mailable
     /**
      * Undocumented variable
      *
-     * @var array < string> $data
+     * @var array < string>
      */
     public array $data;
 
     /**
      * Undocumented function
      *
-     * @param array < string > $data
+     * @param  array < string >  $data
      */
     public function __construct(array $data)
     {
@@ -31,7 +30,7 @@ class ContactMail extends Mailable
     public function build(): self
     {
         return $this
-            ->from($this->data['email'], $this->data['firstname'] . ' ' . $this->data['lastname'])
+            ->from($this->data['email'], $this->data['firstname'].' '.$this->data['lastname'])
             ->subject('Nouvelle demande de contact')
             ->markdown('emails.contact', ['data' => $this->data]);
     }

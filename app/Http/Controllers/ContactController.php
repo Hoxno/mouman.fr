@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\ContactRequest;
-
 
 class ContactController extends Controller
 {
-    public function contact(ContactRequest $request) :RedirectResponse
+    public function contact(ContactRequest $request): RedirectResponse
     {
         // Validez la requête
         $validatedData = $request->validated();
